@@ -1,23 +1,6 @@
-const pokemons = [
-    {
-        "id": 2,
-        "name": "ivysaur",
-        "sprites": {
-            "official-artwork": {
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
-            }
-        }
-    },
-    {
-        "id": 4,
-        "name": "charmander",
-        "sprites": {
-            "official-artwork": {
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
-            }
-        }
-    }
-]
+fetch("http://localhost:3000/pokemons")
+    .then(response => response.json())
+    .then(pokemons => displayPokemons(pokemons))
 
 const $pokemonContainer = document.querySelector(".pokemon-container")
 
@@ -32,9 +15,7 @@ function showPokemon(pokemon){
     const $pokemonName = document.createElement('h2')
     $pokemonName.textContent = pokemon.name
     const $pokemonImage = document.createElement('img')
-    $pokemonImage.src = pokemon.sprites["official-artwork"].front_default
+    $pokemonImage.src = pokemon.sprites.other["official-artwork"].front_default
     $pokemonCard.append($pokemonName, $pokemonImage)
     $pokemonContainer.append($pokemonCard)
 }
-
-displayPokemons(pokemons)
